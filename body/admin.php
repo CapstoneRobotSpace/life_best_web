@@ -4,13 +4,12 @@
     <title>Map</title>
     <link rel="stylesheet" href="../Css/map_style.css">
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA47TIDmePhzcfD68uWKcs-vGy9tLMDXGI&callback=initMap&libraries=&v=weekly"async></script>
-    <script src="../JavaScripts/map_fun.js"></script>
+    <?php include "../Scripts/map/admin_map.php" ?>
   </head>
     <body>
         <div id="map"></div>
-        <div id="log"></div>
         <p>
-            GPS N : <input id='GPS_N'/> E : <input id='GPS_E'/> <button onclick="makeMarker()">make marker</button>
+            ID : <input id='ID'/> GPS N : <input id='GPS_N'/> E : <input id='GPS_E'/>  STATUS : <input id='ST'/> <button onclick="markerInfo()">make marker</button>
         </p>
         <button onclick="deleteMarkers()">delete marker</button>
     </body>

@@ -3,15 +3,11 @@
 	<head>
 		<title>Log in</title>
 		<link rel="stylesheet" href="Css/log_in.css">
-    <script src="JavaScripts/login_fun.js"></script>
+		 <?php include "Scripts/login/login_fun.php"; ?>
 	</head>
 	<body>
 		<div id="logDiv">
 			<center>
-				<?php
-					include_once($_SERVER['DOCUMENT_ROOT']."/php/login_fun.php"); 
-					DB_init();
-				?>
 				<p>
 					<font size="7">LIFE BEST WEB PAGE
 					<font size="3">
