@@ -6,11 +6,11 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA47TIDmePhzcfD68uWKcs-vGy9tLMDXGI&callback=initMap&libraries=&v=weekly"async></script>
     <?php include "../Scripts/map/admin_map.php" ?>
   </head>
-    <body>
+    <body onload="auto_update()">
         <div id="map"></div>
         <p>
-            ID : <input id='ID'/> GPS N : <input id='GPS_N'/> E : <input id='GPS_E'/>  STATUS : <input id='ST'/> <button onclick="markerInfo()">make marker</button>
+            ID : <input id='ID'/> GPS N : <input id='GPS_N'/> E : <input id='GPS_E'/>  STATUS : <input id='ST'/> <button onclick="markerInsert()">make marker</button>
         </p>
-        <button onclick="deleteMarkers()">delete marker</button>
+        <button onclick="remove_marker_DB()">delete marker</button>
     </body>
 </html>

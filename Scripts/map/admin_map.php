@@ -11,13 +11,13 @@ function initMap(){
     main_map= new google.maps.Map(e,opts);
 }
 
-function addMarker(location) {
+function addMarker(gps_n_val,gps_e_val) {
+		var location = {lat:gps_n_val,lng:gps_e_val};
     const marker = new google.maps.Marker({
       position: location,
       map: main_map,
     });
     markers.push(marker);
-    main_map.setCenter(location);
 }
 
 function setMapOnAll(map) {
@@ -27,7 +27,6 @@ function setMapOnAll(map) {
 }
 
 function clearMarkers() {
-    alert("delete all markers");
     setMapOnAll(null);
 }
 
@@ -35,8 +34,8 @@ function showMarkers() {
     setMapOnAll(main_map);
 }
 
-function deleteMarkers() {
-    clearMarkers();
+function deleteMarkers() {    
+		clearMarkers();
     markers = [];
 }
 
@@ -80,7 +79,23 @@ function markerInsert(){
 		}
 	});
 }
-
+function auto_update(){
+	setInterval(markerInfo,1000);
+}
+function remove_marker_DB(){
+	$.ajax({
+		type: "POST",
+		url: "../Scripts/map/marker_remove.php",
+		data:'',
+		dataType:"json",
+		success: function(data,status,xhr){
+			console.log("deleted");
+		},
+		error:function(jqXHR,textStatus,errorThrown){
+			console.log(jqXHR.responseText);		
+		}
+	});
+}
 function markerInfo(){
 	$.ajax({
 		type: "POST",
@@ -88,8 +103,14 @@ function markerInfo(){
 		data:'',
 		dataType:"json",
 		success: function(data,status,xhr){
-			var datas = data.split(" - ");			
-			console.log(datas[1]);
+			deleteMarkers();
+			if(data != "0" && data != "-1"){
+				var datas = data.split(" - ");
+				for(let i=0;i<datas.length-1;i++){
+					var marker_info = datas[i].split(" ");		
+					addMarker(Number(marker_info[1]),Number(marker_info[2]));			
+				}
+			}
 		},
 		error:function(jqXHR,textStatus,errorThrown){
 			console.log(jqXHR.responseText);		

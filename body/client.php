@@ -6,7 +6,7 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA47TIDmePhzcfD68uWKcs-vGy9tLMDXGI&callback=initMap&libraries=&v=weekly"async></script>
     <?php include "../Scripts/map/client_map.php" ?>
   </head>
-    <body>
+    <body onload="auto_update()">
         <div id="map"></div>
     </body>
 </html>
